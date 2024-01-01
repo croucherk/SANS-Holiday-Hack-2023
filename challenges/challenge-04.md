@@ -28,3 +28,7 @@ The first thing to note is that when we move the face of the lock counter-clockw
 
 ![Figure 2: *Reset Status* Button Turns Red](/img/faster-lock-2.png)
 
+When we pull on the lever, the *Tension Status* button changes from green to red respective to how far we pull the shackle.
+
+![Figure 3: *Tension Status* Button Turning Red](/gif/faster-tension.gif)
+
