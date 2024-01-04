@@ -1,80 +1,47 @@
 # Hashcat
 
-```
-In a realm of bytes and digital cheer,
-The festive season brings a challenge near.
-Santa's code has twists that may enthrall,
-It's up to you to decode them all.
+To complete this challenge, travel to *Scaredy Kite Heights* on the *Island of Misfit Toys* and talk to *Eve Snowflakes*.
 
-Hidden deep in the snow is a kerberos token,
-Its type and form, in whispers, spoken.
-From reindeers' leaps to the elfish toast,
-Might the secret be in an ASREP roast?
+This challenge invites us to attempt cracking a hash with the password recovery utility Hashcat.
 
-`hashcat`, your reindeer, so spry and true,
-Will leap through hashes, bringing answers to you.
-But heed this advice to temper your pace,
-`-w 1 -u 1 --kernel-accel 1 --kernel-loops 1`, just in case.
+## Challenge Prompt
 
-For within this quest, speed isn't the key,
-Patience and thought will set the answers free.
-So include these flags, let your command be slow,
-And watch as the right solutions begin to show.
+After opening the terminal, we are greeted with a prompt explaining the premise of the challenge.
 
-For hints on the hash, when you feel quite adrift,
-This festive link, your spirits, will lift:
-https://hashcat.net/wiki/doku.php?id=example_hashes
+![Figure 1: Hashcat Challenge Prompt](/img/hashcat-prompt.png)
 
-And when in doubt of `hashcat`'s might,
-The CLI docs will guide you right:
-https://hashcat.net/wiki/doku.php?id=hashcat
+There are a few key takeaways here:
+* Somewhere in our file system there is a kerberos token in some unknown hash format, and its type is related to an "ASREP Roast"
+* The password recovery utility `hashcat` will be used to solve this challenge, and we are provided with command arguments to pass to the program, which we will analyze later
+* We can use the [Hashcat Wiki's *Example hashes* page](https://hashcat.net/wiki/doku.php?id=example_hashes) to assist us in identifying hashes and their respective modes in Hashcat
+* The [Hashcat CLI documentation](https://hashcat.net/wiki/doku.php?id=hashcat) may be useful in this challenge
+* Once we have obtained the plaintext of the target hash, we will pass that plaintext to the binary `/bin/runtoanswer` to complete the challenge
 
-Once you've cracked it, with joy and glee so raw,
-Run /bin/runtoanswer, without a flaw.
-Submit the password for Alabaster Snowball,
-Only then can you claim the prize, the best of all.
-
-So light up your terminal, with commands so grand,
-Crack the code, with `hashcat` in hand!
-Merry Cracking to each, by the pixelated moon's light,
-May your hashes be merry, and your codes so right!
-
-* Determine the hash type in hash.txt and perform a wordlist cracking attempt to find which password is correct and submit it to /bin/runtoanswer .*
-```
-
-Explore the environment:
-
-```console
-elf@8d59694afbd8:~$ ls -al
-total 40
-drwxr-xr-x 1 elf  elf  4096 Nov 27 17:07 .
-drwxr-xr-x 1 root root 4096 Nov 20 18:07 ..
--rw-r--r-- 1 elf  elf   220 Feb 25  2020 .bash_logout
--rw-r--r-- 1 elf  elf  3771 Feb 25  2020 .bashrc
--rw-r--r-- 1 elf  elf   807 Feb 25  2020 .profile
--rw-r--r-- 1 elf  elf  1567 Nov 27 17:07 HELP
--rw-r--r-- 1 elf  elf   541 Nov  9 21:29 hash.txt
--rw-r--r-- 1 root root 2775 Nov  9 21:29 password_list.txt
-```
-
-How many passwords are in `password_list.txt`?
-
-```console
-elf@8d59694afbd8:~$ wc -l password_list.txt 
-143 password_list.txt
-```
+## Identifying the Hash Type
 
 What is the content of `hash.txt`?
 
-```console
-elf@8d59694afbd8:~$ cat hash.txt ; echo
-$krb5asrep$23$alabaster_snowball@XMAS.LOCAL:22865a2bceeaa73227ea4021879eda02$8f07417379e610e2dcb0621462fec3675bb5a850aba31837d541e50c622dc5faee60e48e019256e466d29b4d8c43cbf5bf7264b12c21737499cfcb73d95a903005a6ab6d9689ddd2772b908fc0d0aef43bb34db66af1dddb55b64937d3c7d7e93a91a7f303fef96e17d7f5479bae25c0183e74822ac652e92a56d0251bb5d975c2f2b63f4458526824f2c3dc1f1fcbacb2f6e52022ba6e6b401660b43b5070409cac0cc6223a2bf1b4b415574d7132f2607e12075f7cd2f8674c33e40d8ed55628f1c3eb08dbb8845b0f3bae708784c805b9a3f4b78ddf6830ad0e9eafb07980d7f2e270d8dd1966
+```bash
+cat hash.txt ; echo
 ```
 
-This hash looks like the AS-REQ obtained from an AS-REP-roasting attack. Confirm this by going to https://hashcat.net/wiki/doku.php?id=example_hashes
+![Figure 2: `hash.txt` Contents](/img/hash-txt.png)
 
+This hash looks like the AS-REQ obtained from an AS-REP-roasting attack. Confirm this by going to https://hashcat.net/wiki/doku.php?id=example_hashes.
 
 ![Hashcat Example Hash Identified](/img/hashcat-examples-1.png)
+
+What is AS-REP roasting?
+
+## Cracking the Hash
+
+How many passwords are in `password_list.txt`?
+
+```bash
+wc -l password_list.txt 
+```
+
+There are 143 passwords in the `password_list.txt` file.
 
 We may want to add a rule file to our `hashcat` command to create more permutations of passwords and increase our odds of cracking the hash. Check what rules are pre-installed with `hashcat` by navigating the `/usr/share/hashcat/rules` directory.
 
@@ -160,7 +127,11 @@ Started: Sun Dec 31 19:06:17 2023
 Stopped: Sun Dec 31 19:06:33 2023
 ```
 
-The password has been identified as *IluvC4ndyC4nes!*. Run `/bin/runtoanswer` to submit the password.
+The password has been identified as *IluvC4ndyC4nes!*.
+
+## Submitting the Answer
+
+Run `/bin/runtoanswer` to submit the password.
 
 ```console
 elf@d0908ac20693:~$ /bin/runtoanswer
