@@ -1,5 +1,11 @@
 # The 2023 SANS Holiday Hack Challenge
 
+## Description
+
+The SANS Holiday Hack Challenge is an annual online cyber security *capture the flag*[^1]  during the holiday season. It features a series of fun, practical, and informative technical challenges suited to participants of all skill levels. The SANS Holiday Hack Challenge also includes KringleCon[^2], a completely virtual and free hacker conference featuring a handful of interesting talks by reputable voices in the cyber security industry. The SANS Holiday Hack is produced by the SANS Institute[^3], an organization offering some of the highest quality cyber security training, certifications, courses, and cyber range[^4] programs in the industry.
+
+This year, the theme of the challenge was *artificial intelligence* (AI)[^5], and this theme was reflected in both the challenge's game design and the structure of some of the technical challenges. It is recommended by the producers of the challenge that participants register free account(s) on OpenAI's ChatGPT[^6], Google's Bard[^7], Microsoft's Bing AI-powered copilot utility[^8], or similar free AI tools to complete the challenges.
+
 ## Challenges
 
 1. [Linux 101](/challenges/linux-101.md)
@@ -12,12 +18,6 @@
 8. [KQL Kraken Hunt](/challenges/kql-kraken-hunt.md)
 9. [Phish Detection Agency](/challenges/phish-detection-agency.md)
 10. [Hashcat](/challenges/hashcat.md)
-
-## Description
-
-The SANS Holiday Hack Challenge is an annual online cyber security *capture the flag*[^1]  during the holiday season. It features a series of fun, practical, and informative technical challenges suited to participants of all skill levels. The SANS Holiday Hack Challenge also includes KringleCon[^2], a completely virtual and free hacker conference featuring a handful of interesting talks by reputable voices in the cyber security industry. The SANS Holiday Hack is produced by the SANS Institute[^3], an organization offering some of the highest quality cyber security training, certifications, courses, and cyber range[^4] programs in the industry.
-
-This year, the theme of the challenge was *artificial intelligence* (AI)[^5], and this theme was reflected in both the challenge's game design and the structure of some of the technical challenges. It is recommended by the producers of the challenge that participants register free account(s) on OpenAI's ChatGPT[^6], Google's Bard[^7], Microsoft's Bing AI-powered copilot utility[^8], or similar free AI tools to complete the challenges.
 
 ## Contest Instructions
 
