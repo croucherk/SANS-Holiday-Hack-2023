@@ -6,7 +6,7 @@ The SANS Holiday Hack Challenge is an annual online cyber security *capture the 
 
 This year, the theme of the challenge was *artificial intelligence* (AI)[^5], and this theme was reflected in both the challenge's game design and the structure of some of the technical challenges. It is recommended by the producers of the challenge that participants register free account(s) on OpenAI's ChatGPT[^6], Google's Bard[^7], Microsoft's Bing AI-powered copilot utility[^8], or similar free AI tools to complete the challenges.
 
-## Challenges
+## Completed Challenges
 
 1. [Linux 101](/challenges/linux-101.md)
 2. [Reportinator](/challenges/reportinator.md)
