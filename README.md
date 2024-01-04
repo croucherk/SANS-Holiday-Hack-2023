@@ -12,7 +12,6 @@
 8. [KQL Kraken Hunt](/challenges/kql-kraken-hunt.md)
 9. [Phish Detection Agency](/challenges/phish-detection-agency.md)
 10. [Hashcat](/challenges/hashcat.md)
-11. [Elf Hunt](/challenges/elf-hunt.md)
 
 ## Description
 
