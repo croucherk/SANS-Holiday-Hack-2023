@@ -125,7 +125,7 @@ Back on the target machine, create a backup of `/etc/passwd` in case we need to 
 cat /etc/passwd > /tmp/passwd.bak
 ```
 
-![Figure 10: Creating a Backup of `/etc/passwd`](/img/privesc-backup.md)
+![Figure 10: Creating a Backup of `/etc/passwd`](/img/privesc-backup.png)
 
 Continue with the attack by create a writeable copy of `/etc/passwd`, append the new line to `/etc/passwd` that adds a new superuser with our generated password, and validate its contents.
 
