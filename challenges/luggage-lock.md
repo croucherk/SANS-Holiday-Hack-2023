@@ -42,6 +42,8 @@ The digit *9* was the first to apply resistance to our wheel 5 times during the 
 
 ![Figure 8: Unlocking a One Wheel Rotary Combination Lock](/gif/luggage-test-success.gif)
 
+We have successfully decoded the combination of a one wheel rotary combination lock without prior knowledge of the code.
+
 ## Decoding a Four Wheel Rotary Combination Lock
 
 With our attack methodology matured, let us now attempt decoding a combination lock with 4 wheels.
