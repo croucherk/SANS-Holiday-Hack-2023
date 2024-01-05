@@ -52,6 +52,9 @@ az group list
 
 4. Ok, now use one of the resource groups to get a list of function apps. For more information: https://learn.microsoft.com/en-us/cli/azure/functionapp?view=azure-cli-latest
 
+> *Note*:
+> Some of the information returned from this command relates to other cloud assets used by Santa and his elves.
+
 **Answer**:
 
 ```bash
