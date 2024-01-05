@@ -6,7 +6,7 @@ This challenge is located on *Film Noir Island* in *Chiaroscuro City* next to *S
 
 Once we click on the terminal, we are greeted with a screen explaining the rules of the game.
 
-![Figure 1: Shifty's Card Shuffle Prompt](/img/suffle-prompt.png)
+![Figure 1: Shifty's Card Shuffle Prompt](/img/shuffle-prompt.png)
 
 Here are the takeaways:
 * We pick five cards numbering from 0-9, and can't pick two of the same number.
