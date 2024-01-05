@@ -143,7 +143,7 @@ With our malicious `/etc/passwd` file prepared, we can now overwrite the content
 simplecopy /tmp/passwd /etc/passwd
 ```
 
-![Figure 12: Overwriting the Contents of `/etc/passwd`](/imig/privesc-overwrite.png)
+![Figure 12: Overwriting the Contents of `/etc/passwd`](/img/privesc-overwrite.png)
 
 Now when we attempt to authenticate as *root2*, we should enter a shell running in the context of *root*.
 
