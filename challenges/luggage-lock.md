@@ -50,3 +50,32 @@ With our attack methodology matured, let us now attempt decoding a combination l
 
 ![Figure 8: Starting a Four Wheel Game](/img/luggage-challenge-2.png)
 
+Our first step is to determine the most likely candidate for our first wheel key digit. Apply moderate pressure (3 clicks), and begin turning the wheel, taking note of how many times each digit applies resistance while doing so.
+
+![Figure 9: Determining the First Key Digit on a Four Wheel Lock](/gif/luggage-game-lock1.gif)
+
+We have determined our most likely candidate for wheel one: *5*
+
+Keeping the first wheel in the same position at digit *5*, continue applying moderate pressure and turning the wheel to determine the next key digit.
+
+![Figure 10: Determining the Second Key Digit on a Four Wheel Lock](/gif/luggage-game-lock2.gif)
+
+We have determined our most likely candidate for wheel two: *7*
+
+Keep wheels one and two at their respective positions, and determine the most likely key digit on wheel three.
+
+![Figure 11: Determining the Third Key Digit on a Four Wheel Lock](/gif/luggage-game-lock3.gif)
+
+We have determined our most likely candidate for wheel three: *8*
+
+The last key digit can now be determined using the same method as before.
+
+![Figure 12: Determining the Fourth Key Digit on a Four Wheel Lock](/gif/luggage-game-lock4.gif)
+
+We have determined our most likely candidate for wheel four: *6*
+
+The most likely combination for the luggage lock is therefore *6*-*8*-*7*-*5*. Apply maximum pressure (6 clicks) to the keyhole with this code set on the lock to determine if our estimate was correct.
+
+![Figure 13: Unlocking a Four Wheel Rotary Combination Lock](/gif/luggage-game-success.gif)
+
+We have successfully decoded the combination of a four wheel rotary combination lock without prior knowledge of the code.
