@@ -2,8 +2,6 @@
 
 To complete this challenge, travel to *Scaredy Kite Heights* on the *Island of Misfit Toys* and talk to *Eve Snowflakes*.
 
-This challenge invites us to attempt cracking a hash with the password recovery utility Hashcat.
-
 ## Challenge Prompt
 
 After opening the terminal, we are greeted with a prompt explaining the premise of the challenge.
