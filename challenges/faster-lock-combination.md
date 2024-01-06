@@ -1,28 +1,23 @@
 # Faster Lock
 
-```
-Hey there! I'm Bow Ninecandle, and I've got a bit of a... 'pressing' situation.
+This challenge is located at *Brass Bouy Port* on *Steampunk Island*. Speak to *Bow Ninecandle* to start the challenge.
 
-You see, I need to get into the lavatory, but here's the twist: it's secured with a combination padlock.
+## Challenge Prompt
 
-Talk about bad timing, right? I could really use your help to figure this out before things get... well, urgent.
+If we start a conversation with Ninecandle, we can learn more about the challenge.
 
-I'm sure there are some clever tricks and tips floating around the web that can help us crack this code without too much of a flush... I mean fuss.
+![Challenge Prompt](/img/ninecandle-conversation.png)
 
-Remember, we're aiming for quick and easy solutions here - nothing too complex.
+According to [the YouTube video](https://www.youtube.com/watch?v=27rE5ZvWLU0) provided by Ninecandle, our attack methodology will require determining the following parameters:
+1. **First Locked Position**: by rotating the dial left (towards 10) and applying full pressure to the shackle, we should lock into a grooved position between two half positions.
+2. **Second Locked Position**: by rotating the dial left (towards 10) and applying full pressure to the shackle, we should reach a second grooved position between two half positions. Both locked positions should be between the ranges of 0 and 11.
+3. **Resistant Location**: by resetting the dial, applying half as much pressure to the shackle as before, and rotating the dial to the right (towards 35), we should encounter a whole digit where resistance can be felt.
 
-Once we've gathered a few possible combinations, let's team up and try them out.
+These three parameters can be used to calculate the possible combinations. An [online calculator](https://samy.pl/master/master.html) can be used to streamline this process.
 
-I'm crossing my legs - I mean fingers - hoping we can unlock this door soon.
+## Test Round
 
-After all, everyone knows that the key to holiday happiness is an accessible lavatory!
-
-Let's dive into this challenge and hopefully, we won't have to 'hold it' for too long! Ready to help me out?
-```
-
-Start the lock challenge.
-
-![Faster Lock Figure 1](/img/faster-lock-1.png)
+![Faster Lock Figure 1](/img/faster-lock-3.png)
 
 The first thing to note is that when we move the face of the lock counter-clockwise (the <kbd>-></kbd> arrow key), the *Reset Status* icon turns red. We can deduce that this icon indicates whether we have selected the wrong number for the combination.
 
@@ -44,7 +39,13 @@ However, if we attempt to move the face of the lock while the shackle is complet
 
 ![Figure 6: Complete Tension Effects](/gif/complete-tension.gif)
 
-Our first objective is to find the *First Locked Position* parameter value. This is accomplished by pulling the shackle as hard as we can and iterating over the values 0 - 11 until we are locked into a small groove. For all grooves, take note of which digits the notch is between. If the notch is between two whole digits (e.g. 5 and 6), then the groove is not indicative of one of our locked positions. However, if the notch is between two half digits (e.g. 5.5 and 6.5), then that groove is one of our locked positions.
+## Decoding the Lock
+
+Our first objective is to find the *First Locked Position* parameter value. Let's ask ChatGPT to review the importance of the first and second locked positions.
+
+![ChatGPT Faster Lock Locked Positions](/img/chatgpt-locked.png)
+
+We start by pulling the shackle as hard as we can and iterating over the values 0 - 11 until we are locked into a small groove. For all grooves, take note of which digits the notch is between. If the notch is between two whole digits (e.g. 5 and 6), then the groove is not indicative of one of our locked positions. However, if the notch is between two half digits (e.g. 5.5 and 6.5), then that groove is one of our locked positions.
 
 ![Figure 7: Determining our First Locked Position](/gif/first-position.gif)
 
@@ -52,11 +53,17 @@ We identified the first locked position as *3*, since the notch was in a groove 
 
 ![Figure 8: Determining our Second Locked Position](/gif/second-position.gif)
 
-Our second lock position is *8*. The next objective is to identify the *Resistant Location*. 
+Our second lock position is *8*. 
+
+The next objective is to identify the *Resistant Location*. Let's ask ChatGPT to quickly summarize what the significance of the resistant location.
+
+![ChatGPT Faster Lock Resistant Position](/img/chatgpt-resistant.png)
+
+We determine the resistant location by applying moderate pressure to the shackle and turning the dial to the right until we reach a digit where the dial slows down.
 
 ![Figure 9: Determining our Resistant Position](/gif/resistant-position.gif)
 
-The resistant position is 16, we can now plug these values into the calculator, which should provide us the two candidates for the actual third digit position.
+The resistant position is *16*. We can now plug these values into the calculator, which should provide us the two candidates for the actual third digit position.
 
 ![Figure 10: Lock Calculator Third Digit Candidates Identified](/img/lock-calculator-1.png)
 
@@ -65,6 +72,9 @@ To determine which of the two third digit position candidates are the legitimate
 ![Figure 11: Comparing the "Give" of Both Third Position Candidates](/gif/third-position-candidates.gif)
 
 We are going to assume that position *33* is the likelier candidate because it was visibly looser than position *13*.
+
+> *Note*:
+> At this point, I toggled the *Third digit* button to be *33*. This changed the array of possible *Second Digit(s)* to an array that did not include *31*, while toggling the button to *13* changed the array of possible digits to include *31*, which ended up being the correct second digit. It is possible that we have identified a bug in the challenge application's behavior, or the calculator we used. This requires additional research at a later time.
 
 Next, we must determine the legitimate second position. We observe that when we turn the face of the lock clockwise to position *21*, make one full 360 degree rotation in the counter-clockwise direction, stop at a non-legitimate second position possibility (like *22*, which is not a second digit candidate), the *Reset Status* icon turns red, which indicates that the second position digit was incorrect.
 
@@ -77,3 +87,5 @@ After multiple trial-and-error attempts, we observe that when we turn the face o
 We have our combination: 21 - 31 - 33
 
 ![Figure 14: Lock Picked](/gif/lock-picked.gif)
+
+We have successfully decoded the combination code on the Faster Combination Lock without prior knowledge of the code.
