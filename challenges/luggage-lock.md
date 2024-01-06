@@ -6,7 +6,7 @@ Visit *Garland Candlesticks* in the *Squarewheel Yard* on the *Island of Misfit 
 
 ![Figure 1: Luggage Lock Decoder Challenge Prompt](/img/luggage-prompt.png)
 
-We are challenged to open a luggage bag with a rotary combination lock[^1] by decoding the 1-4 wheel combination. We have the option of choosing how many wheels the lock has, but to complete the challenge we must decode a 4-wheel lock. 
+We are challenged to open a luggage bag with a rotary combination lock[^1] by decoding the 1-4 wheel combination code. We have the option of choosing how many wheels the lock has, but to complete the challenge we must decode a 4-wheel lock. 
 
 ## Test Round
 
@@ -32,7 +32,7 @@ If we apply pressure **and** dial a wheel, eventually the wheel will apply resis
 
 ## Our Attack Methodology
 
-The following YouTube video is especially helpful in maturing our attack methodology:
+The following YouTube video is especially helpful in developing our attack methodology:
 
 [YouTube: KringleCon Lock Talk by Chirs Elgee](https://www.youtube.com/watch?v=ycM1hBSEyog)
 
