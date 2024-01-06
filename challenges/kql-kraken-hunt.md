@@ -12,7 +12,7 @@ There are some key takeaways:
 * To login to our account, we must first provision a free Kusto cluster or KQL database; the URL of the cluster/database will be a confidential string identifying ourselves.
 * To complete the challenge, we must determine the number of Craftsperson Elf's in the organization that are working from laptops.
 * To populate our cluster/database with the data required to complete the challenge, we must run the script provided at the bottom of the message in our console.
-* The [FAQ section] contains the instructions for creating a free personal cluster.
+* The [FAQ section](https://detective.kusto.io/faq?index=1) contains the instructions for creating a free personal cluster.
 
 ![Figure 2: FAW Cluster Creation Instructions](/img/kql-faq.png)
 
@@ -32,7 +32,7 @@ Return back to the Kusto inbox and click the *Log in* page at the top right corn
 
 ## Preparing the Challenge
 
-Now that we are logged in and our progress is being tracked, we can populate the KQL database. For this challenge I used the *Azure Data Explorer Web UI*[^A], but other tools like *Real-Time Analytics KQL Queryset*[^B] or *Kusto Explorer*[^C] should also be acceptable.
+Now that we are logged in and our progress is being tracked, we can populate the KQL database. For this challenge I used the *Azure Data Explorer Web UI*[^1], but other tools like *Real-Time Analytics KQL Queryset*[^2] or *Kusto Explorer*[^3] should also be acceptable.
 
 Once you have accessed the web UI of your choice, execute the provided script.
 
@@ -262,6 +262,6 @@ Run the command in the web UI to decode the ciphertext.
 
 ![Figure 31: Decoded Solution](/img/kql-final-query.png)
 
-[^A]: https://dataexplorer.azure.com/
-[^B]: https://aka.ms/fabrickqlqueryset
-[^C]: https://aka.ms/ke
+[^1]: https://dataexplorer.azure.com/
+[^2]: https://aka.ms/fabrickqlqueryset
+[^3]: https://aka.ms/ke
