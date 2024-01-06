@@ -16,10 +16,6 @@ For this challenge, I ventured to *Santa's Surf Shack* on *Christmas Island* and
 ls | grep troll
 ```
 
-**Explanation**:
-
-
-
 ![Figure 2: Directory Listing Command](/img/linux-101-1.png)
 
 2. Now find the troll inside the troll.
@@ -29,10 +25,6 @@ ls | grep troll
 ```bash
 cat troll_19315479765589239
 ```
-
-**Explanation**:
-
-
 
 ![Figure 3: Reading the Contents of `troll_19315479765589239` from the CLI](/img/linux-101-2.png)
 
@@ -44,10 +36,6 @@ cat troll_19315479765589239
 rm troll_19315479765589239
 ```
 
-**Explanation**:
-
-
-
 ![Figure 4: Removing the File `troll_19315479765589239` from the `/home/elf` Directory](/img/linux-101-3.png)
 
 4. Print the present working directory using a command.
@@ -58,10 +46,6 @@ rm troll_19315479765589239
 pwd
 ```
 
-**Explanation**:
-
-
-
 ![Figure 5: Printing the Present Working Directory](/img/linux-101-4.png)
 
 5. Good job but it looks like another troll hid itself in your home directory. Find the hidden troll!
@@ -71,10 +55,6 @@ pwd
 ```bash
 ls -a | grep troll
 ```
-
-**Explanation**:
-
-
 
 ![Figure 6: Finding a Hidden File in the `/home/elf` Directory](/img/linux-101-5.png)
 
@@ -89,10 +69,6 @@ cat .bash_history | grep troll
 > *Note*:
 > Another suitable answer here would be to run `history | grep troll`. However, since this command would include commands run in the current session, and we can reasonably deduce that this question is looking for a troll from a previous session used to set up this host, it is better to inspect the contents of `.bash_history`, which would only contain commands from a concluded session.
 
-**Explanation**:
-
-
-
 ![Figure 7: Checking the Bash History of *elf*](/img/linux-101-6.png)
 
 7. Find the troll in your environment variables.
@@ -102,10 +78,6 @@ cat .bash_history | grep troll
 ```bash
 env | grep troll
 ```
-
-**Explanation**:
-
-
 
 ![Figure 8: Checking Environment Variables](/img/linux-101-7.png)
 
@@ -117,10 +89,6 @@ env | grep troll
 cd workshop/
 ```
 
-**Explanation**:
-
-
-
 ![Figure 9: Changing Directories to `/home/elf/workshop`](/img/linux-101-8.png)
 
 9. A troll is hiding in one of the workshop toolboxes. Use `grep` while ignoring case to find which toolbox the troll is in.
@@ -130,10 +98,6 @@ cd workshop/
 ```bash
 cat *.txt | grep -i troll
 ```
-
-**Explanation**:
-
-
 
 ![Figure 10: Filtering the Results of `ls` While Ignoring Case](/img/linux-101-9.png)
 
@@ -149,10 +113,6 @@ chmod +x present_engine
 > *Note*:
 > The command `chmod +x` will give execute permissions to *all* users of the host. This may not be ideal from a security perspective, so another alternative command would be `chmod `, which would only give execute permissions to the owner of the file while maintaining read access for other users. 
 
-**Explanation**:
-
-
-
 ![Figure 11: Modifying the ACL of the `/home/elf/workshop/present_engine` Binary and Executing it](/img/linux-101-10.png)
 
 11. Trolls have blown the fuses in `/home/elf/workshop/electrical`. `cd` into `electrical` and rename `blown_fuse0` to `fuse0`.
@@ -164,10 +124,6 @@ cd /home/elf/workshop/electrical/
 mv blown_fuse0 fuse0
 ```
 
-**Explanation**:
-
-
-
 ![Figure 12: Renaming `blown_fuse0` to `fuse0`](/img/linux-101-11.png)
 
 12. Now, make a symbolic link (symlink) named `fuse1` that points to `fuse0`.
@@ -177,10 +133,6 @@ mv blown_fuse0 fuse0
 ```bash
 ln -s fuse0 fuse1
 ```
-
-**Explanation**:
-
-
 
 ![Figure 13: Creating a Symbolic Link `fuse1` Pointing to `fuse0`](/img/linux-101-12.png)
 
@@ -192,10 +144,6 @@ ln -s fuse0 fuse1
 cp fuse1 fuse2
 ```
 
-**Explanation**:
-
-
-
 ![Figure 14: Making a Copy of `fuse1`](/img/linux-101-13.png)
 
 14. We need to make sure trolls don't come back. Add the characters "TROLL_REPELLENT" into the file `fuse2`.
@@ -205,10 +153,6 @@ cp fuse1 fuse2
 ```bash
 echo TROLL_REPELLENT >> fuse2
 ```
-
-**Explanation**:
-
-
 
 ![Figure 15: Appending the string "TROLL_REPELLENT" to `fuse2`](/img/linux-101-14.png)
 
@@ -220,10 +164,6 @@ echo TROLL_REPELLENT >> fuse2
 find /opt/troll_den -iname "*troll*"
 ```
 
-**Explanation**:
-
-
-
 ![Figure 16: Finding the Troll in `/opt/troll_den`](/img/linux-101-15.png)
 
 16. Find the file somewhere in `/opt/troll_den` that is owned by the user *troll*.
@@ -233,10 +173,6 @@ find /opt/troll_den -iname "*troll*"
 ```bash
 find /opt/troll_den -user troll
 ```
-
-**Explanation**:
-
-
 
 ![Figure 17: Finding the File Owned by *troll* in `/opt/troll_den`](/img/linux-101-16.png)
 
@@ -248,10 +184,6 @@ find /opt/troll_den -user troll
 find /opt/troll_den -size +108k -size -110k
 ```
 
-**Explanation**:
-
-
-
 ![Figure 18: Finding a File Between 108 KB and 110 KB](/img/linux-101-17.png)
 
 18. List running processes to find another troll.
@@ -261,10 +193,6 @@ find /opt/troll_den -size +108k -size -110k
 ```bash
 ps aux
 ```
-
-**Explanation**:
-
-
 
 ![Figure 19: Listing Running Processes](/img/linux-101-18.png)
 
@@ -276,10 +204,6 @@ ps aux
 netstat -tln
 ```
 
-**Explanation**:
-
-
-
 ![Figure 20: Displaying the TCP Port Listening on the Loopback Address](/img/linux-101-19.png)
 
 20. The service listening on port 54321 is an HTTP server. Interact with this server to retrieve the last troll.
@@ -289,10 +213,6 @@ netstat -tln
 ```bash
 curl http://127.0.0.1:54321
 ```
-
-**Explanation**:
-
-
 
 ![Figure 21: Interacting with the Locally Running Web Service](/img/linux-101-20.png)
 
@@ -304,10 +224,6 @@ curl http://127.0.0.1:54321
 ps aux | grep 14516_troll
 kill 28772
 ```
-
-**Explanation**:
-
-
 
 ![Figure 22: Finding and Stopping the `14516_troll` Process](/img/linux-101-21.png)
 
