@@ -6,7 +6,7 @@ Visit *Garland Candlesticks* in the *Squarewheel Yard* on the *Island of Misfit 
 
 ![Figure 1: Luggage Lock Decoder Challenge Prompt](/img/luggage-prompt.png)
 
-We are challenged to open a luggage bag with a rotary combination lock by decoding the 1-4 wheel combination. We have the option of choosing how many wheels the lock has, but to complete the challenge we must decode a 4-wheel lock. 
+We are challenged to open a luggage bag with a rotary combination lock[^1] by decoding the 1-4 wheel combination. We have the option of choosing how many wheels the lock has, but to complete the challenge we must decode a 4-wheel lock. 
 
 ## Test Round
 
@@ -31,6 +31,20 @@ If we apply pressure **and** dial a wheel, eventually the wheel will apply resis
 ![Figure 6: Rotating the Wheels While Applying Keyhole Pressure](/gif/luggage-resistance.gif)
 
 ## Our Attack Methodology
+
+The following YouTube video is especially helpful in maturing our attack methodology:
+
+[YouTube: KringleCon Lock Talk by Chirs Elgee](https://www.youtube.com/watch?v=ycM1hBSEyog)
+
+In Elgee's demonstration, when he applies pressure to the keyhole button and spins one of the wheels, eventually that wheel will become momentarily "stuck" on a single digit. The more "stuck" a digit becomes, the more likely that it is one of the key digits in the combination. Elgee starts at wheel 1, and proceeds sequentially until the lock is opened.
+
+Our attack methodology will look like this:
+1. Apply moderate pressure to the keyhole.
+2. Turn wheel *N* continuously, where *N* is the index of the wheels in ascending order, starting at wheel *1*.
+3. Once we have encountered pressure on a given digit a significant number of times (let's say *5* times), leave the wheel turned to that digit.
+4. Repeat steps 2-3 for the next wheels.
+5. Apply maximum pressure to the keyhole once we have determined the most likely key digit candidates for all wheels.
+6. If our estimate was incorrect, repeat the steps starting at step 1 until successful.
 
 To test our attack methodology, let us return to our one wheel combination lock. 
 
@@ -79,3 +93,5 @@ The most likely combination for the luggage lock is therefore *6*-*8*-*7*-*5*. A
 ![Figure 13: Unlocking a Four Wheel Rotary Combination Lock](/gif/luggage-game-success.gif)
 
 We have successfully decoded the combination of a four wheel rotary combination lock without prior knowledge of the code.
+
+[^1]: https://en.wikipedia.org/wiki/Luggage_lock
