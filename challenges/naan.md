@@ -1,6 +1,6 @@
 # Na'an
 
-This challenge is located on *Film Noir Island* in *Chiaroscuro City* next to *Shifty McShuffles*.
+This challenge is located on *Film Noir Island* in *Chiaroscuro City*. In this challenge, we will be playing against *Shifty McShuffles*.
 
 ## The Rules of the Game
 
@@ -33,13 +33,17 @@ At the next round, I chose a hand that will be guaranteed to contain the lowest 
 
 !![Figure 4: A Tied Hand](/img/nan-tie.png)
 
-Shifty also picked the lowest and highest numbers. If we continue to play this hand in perpetuity, Shifty will also choose the same numbers and the hand will always be tied. It now becomes clear how Shifty is cheating: he is looking at our cards. so if we choose a 0 or a 9, he will also choose those numbers and the round will be tied. The game can only realistically end with us choosing losing hands and Shifty picking winning ones.
+Shifty also picked the lowest and highest numbers. If we continue to play this hand in perpetuity, Shifty will also choose the same numbers and the hand will always be tied. It now becomes clear how Shifty is cheating: he is looking at our cards. If we choose a 0 or a 9, he will also choose those numbers and the round will be tied. The game can only realistically end with us choosing losing hands and Shifty picking winning ones.
 
 ![Figure 5: Game Lost](/img/nan-game-lost.png)
 
 ## Beating Shifty
 
-To better understand 
+To better understand how we intend to beat Shifty, we should ask ChatGPT to educate us on Python NaN injection attacks[^1].
+
+![Figure 6: ChatGPT](/img/nan-chatgpt.png)
+
+NaN is a floating-point value in Python typically used to represent values like infinite or infinitesimally-close-to-zero. If passed to a Python application that does not sufficiently sanitize inputs or use NaN-aware functions like `math.isnan(x)`[^2], then it can lead to application logic flaws and unexpected results.
 
 Choose a hand with a `nan` string as the value of one of the hands: `0`, `1`, `nan`, `8`, `9`
 
@@ -48,3 +52,6 @@ Choose a hand with a `nan` string as the value of one of the hands: `0`, `1`, `n
 We have found a way to win a hand. Continue with this hand until the game is won.
 
 ![Figure 7: Winning the Game](/img/nan-game-won.png)
+
+[^1]: https://www.tenable.com/blog/python-nan-injection
+[^2]: https://docs.python.org/3/library/math.html#math.isnan
